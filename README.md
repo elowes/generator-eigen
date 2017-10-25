@@ -1,7 +1,7 @@
 # generator-eigen
-艾耕科技前端项目脚手架
+[艾耕科技](https://www.aidigger.com) 前端项目脚手架
 
-### 使用方法
+## Installation
 
 1. 全局安装 yeoman
 ``` shell
@@ -28,7 +28,7 @@ yo eigen
 npm start
 ```
 
-6. 打包代码
+6. 打包代码 (暂时不支持 Windows)
 ``` shell
 npm run build
 ```
