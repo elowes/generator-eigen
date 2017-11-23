@@ -5,6 +5,8 @@
         "stage-0"
     ],
     "plugins": [
-        "transform-runtime"
+        "transform-runtime",
+        "dva-hmr",
+        "transform-decorators-legacy"
     ]
 }

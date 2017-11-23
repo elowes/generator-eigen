@@ -51,7 +51,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [{
                         loader: "css-loader",
@@ -63,11 +63,11 @@ module.exports = {
                     {
                         loader: "sass-loader"
                     }]
-                })
+                }))
             },
             {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [{
                         loader: "css-loader"
@@ -75,14 +75,14 @@ module.exports = {
                     {
                         loader: "less-loader"
                     }]
-                })
+                }))
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader"
-                })
+                }))
             }
         ]
     },
