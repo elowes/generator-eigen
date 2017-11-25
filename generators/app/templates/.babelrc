@@ -6,7 +6,13 @@
     ],
     "plugins": [
         "transform-runtime",
-        "dva-hmr",
         "transform-decorators-legacy"
-    ]
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                "dva-hmr"
+            ]
+        }
+    }
 }

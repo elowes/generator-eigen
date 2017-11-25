@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'production';
 var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -66,6 +67,9 @@ module.exports = {
                         }
                     },
                     {
+                        loader: "postcss-loader"
+                    },
+                    {
                         loader: "sass-loader"
                     }]
                 })
@@ -82,6 +86,9 @@ module.exports = {
                         }
                     },
                     {
+                        loader: "postcss-loader"
+                    },
+                    {
                         loader: "less-loader"
                     }]
                 })
@@ -95,7 +102,9 @@ module.exports = {
                         options: {
                             minimize: true
                         }
-                    }]
+                    }, {
+                        loader: "postcss-loader"
+                    },]
                 })
             }
         ]
@@ -107,10 +116,8 @@ module.exports = {
             template: './index.ejs'
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
+        new webpack.EnvironmentPlugin(['NODE_ENV']),
         new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            },
             PRODUCTION: JSON.stringify(true),
             VERSION: JSON.stringify(new Date().toLocaleString())
         }),
