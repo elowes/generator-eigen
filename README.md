@@ -1,6 +1,8 @@
 # generator-eigen
 [艾耕科技](https://www.aidigger.com) 前端项目脚手架
 
+[Issues](https://github.com/elowes/generator-eigen/issues )Issue 提交
+
 ## Installation
 
 1. 全局安装 yeoman
@@ -28,7 +30,7 @@ yo eigen
 npm start
 ```
 
-6. 打包代码 (暂时不支持 Windows)
+6. 打包代码 (Only Support MacOS)
 ``` shell
 npm run build
 ```

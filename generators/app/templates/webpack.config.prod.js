@@ -7,7 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     devtool: "source-map",
     entry: {
-        app: "./src/index.js", // Your appʼs entry point
+        app: "./src/index.js",
         vendor: ['react', 'react-dom']
     },
     resolve: {
@@ -15,8 +15,13 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, "build/static"),
-        filename: "js/[name].[chunkhash].js",
+        filename: "js/[name]-[chunkhash].js",
         publicPath: "/static/"
+    },
+    stats: {
+        children: false,
+        chunks: false,
+        modules: false
     },
     module: {
         rules: [
@@ -25,7 +30,7 @@ module.exports = {
                 use: [{
                     loader: "file-loader",
                     options: {
-                        name: "font/[hash:16].[ext]"
+                        name: "font/font-[hash:16].[ext]"
                     }
                 }],
                 exclude: [
@@ -38,7 +43,7 @@ module.exports = {
                     loader: "url-loader",
                     options: {
                         limit: 8192,
-                        name: "img/[hash:16].[ext]"
+                        name: "img/img-[hash:16].[ext]"
                     }
                 }]
             },
@@ -138,7 +143,7 @@ module.exports = {
             banner: "Created by Eigen :)"
         }),
         new ExtractTextPlugin({
-            filename: "css/styles.[chunkhash].css"
+            filename: "css/styles-[chunkhash].css"
         })
     ]
 }
