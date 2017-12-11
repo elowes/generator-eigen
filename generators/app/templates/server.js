@@ -2,9 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
 var proxy = require('http-proxy-middleware');
-
+var openBrowser = require('react-dev-utils/openBrowser');
 var config = require('./webpack.config.dev');
-var opn = require('opn');
 
 var app = express();
 var compiler = webpack(config);
@@ -42,9 +41,9 @@ app.listen(8877, function (err) {
         return console.error(err);
     }
 
-    opn("http://localhost:8877");
-
-    console.log('Listening at http://localhost:8877/');
+    if (openBrowser('http://localhost:8877')) {
+        console.log('The browser tab has been opened!');
+    }
 });
 
 
