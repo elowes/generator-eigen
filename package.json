@@ -1,6 +1,6 @@
 {
   "name": "generator-eigen",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "react&dva template",
   "main": "index.js",
   "scripts": {
