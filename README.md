@@ -30,7 +30,7 @@ yo eigen
 npm start
 ```
 
-6. 打包代码 (Only Support MacOS)
+6. 打包代码
 ``` shell
 npm run build
 ```

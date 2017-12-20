@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "mock": "node json-server/server.js",
-    "build": "rm -rf build && webpack --config webpack.config.prod.js"
+    "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [
     "eigen"
