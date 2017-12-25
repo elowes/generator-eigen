@@ -7,14 +7,14 @@ export default {
 
     subscriptions: {
         setup({ dispatch, history }) {  // eslint-disable-line
-            return history.listen(({ pathname }) => {
+            return history.listen(({ pathname }) => { // eslint-disable-line
                 
             })
         },
     },
 
     effects: {
-        *getDashboardArticles({ payload }, { call, put, select }) {
+        *getDashboardArticles({ payload }, { call, put, select }) { // eslint-disable-line
             yield put({
                 type: 'test'
             })
@@ -23,7 +23,7 @@ export default {
     },
 
     reducers: {
-        test(state, { payload }) {
+        test(state, { payload }) { // eslint-disable-line
             return state;
         }
     }
