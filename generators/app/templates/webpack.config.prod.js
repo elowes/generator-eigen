@@ -3,6 +3,8 @@ var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+var HappyPack = require("happypack");
 
 module.exports = {
     devtool: "source-map",
@@ -50,7 +52,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 use: [{
-                    loader: "babel-loader"
+                    loader: "happypack/loader"
                 }],
                 include: [
                     path.resolve(__dirname, "./src")
@@ -109,7 +111,7 @@ module.exports = {
                         }
                     }, {
                         loader: "postcss-loader"
-                    },]
+                    }]
                 })
             }
         ]
@@ -117,21 +119,40 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: '../index.html',
-            title: 'Eigen',
+            title: 'generator-eigen',
             template: './index.ejs'
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.EnvironmentPlugin(['NODE_ENV']),
         new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify("production")
+            },
             PRODUCTION: JSON.stringify(true),
             VERSION: JSON.stringify(new Date().toLocaleString())
         }),
-        new webpack.optimize.UglifyJsPlugin(
-            {
-                sourceMap: false,
-                warnings: false
+        new HappyPack({
+            loaders: [
+                {
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            ],
+            threads: 4
+        }),
+        new ParallelUglifyPlugin({
+            cacheDir: ".cache/",
+            uglifyJS: {
+                output: {
+                    comments: false
+                },
+                compress: {
+                    warnings: false
+                }
             }
-        ),
+        }),
         new webpack.HashedModuleIdsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
@@ -140,7 +161,7 @@ module.exports = {
             name: 'runtime',
         }),
         new webpack.BannerPlugin({
-            banner: "Created by Eigen :)"
+            banner: "Created by generator-eigen :)"
         }),
         new ExtractTextPlugin({
             filename: "css/styles-[chunkhash].css"

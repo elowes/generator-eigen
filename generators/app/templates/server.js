@@ -20,9 +20,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+// proxy setting for dev
 const proxyConfig = {
     'target': 'https://alpha-labs.aidigger.com',
-    // 'target': 'http://192.168.3.66:5000',
     // 'pathRewrite': { '^/dual/api': '' },
     'headers': {
         cookie: 'code=563757; skey="ZoGsc5OX0Tf1obykrm1WflJMIP8=";',
@@ -30,6 +30,7 @@ const proxyConfig = {
     }
 }
 
+// catch the /api route for proxy
 app.use('/api', proxy(proxyConfig));
 
 app.get('*', function (req, res) {

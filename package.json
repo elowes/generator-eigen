@@ -1,13 +1,18 @@
 {
   "name": "generator-eigen",
-  "version": "0.0.10",
-  "description": "react&dva template",
+  "version": "0.0.11",
+  "description": "Create React&Dva apps easily.",
   "main": "index.js",
   "scripts": {
     "test": ""
   },
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "react",
+    "dva",
+    "generator",
+    "eigen",
+    "frontend"
   ],
   "files": [
     "generators"
@@ -16,6 +21,6 @@
   "license": "ISC",
   "dependencies": {
     "mkdirp": "^0.5.1",
-    "yeoman-generator": "^2.0.1"
+    "yeoman-generator": "^2.0.2"
   }
 }

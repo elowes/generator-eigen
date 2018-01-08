@@ -1,36 +1,41 @@
 # generator-eigen
-[艾耕科技](https://www.aidigger.com) 前端项目脚手架
+[Eigen Tech](https://www.eigentech.ai/) frontend project tmpl.
 
-[Issues](https://github.com/elowes/generator-eigen/issues )Issue 提交
+[Issues](https://github.com/elowes/generator-eigen/issues ) Issue commit.
 
 ## Installation
 
-1. 全局安装 yeoman
+1. Install yeoman
 ``` shell
 npm install yo -g
 ```
 
-2. 安装 generator-eigen
+2. Install generator-eigen
 ``` shell
 npm install generator-eigen
 ```
 
-3. 在本地新建项目文件夹，例如文件夹 tmp
+3. Create an empty directory in disk then cd it
 ``` shell
-mkdir tmp && cd tmp
+mkdir example && cd example
 ```
 
-4. 执行命令生成项目模板（基于 react@16.0 & dva@2.0）
+4. Run（based on react@16.0 & dva@2.0）
 ``` shell
 yo eigen
 ```
 
-5. 启动开发服务器
+5. Install project dependence
+``` shell
+npm install
+```
+
+6. Run dev server 
 ``` shell
 npm start
 ```
 
-6. 打包代码
+7. Bundle production codes (will generate codes in build/)
 ``` shell
 npm run build
 ```
