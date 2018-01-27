@@ -3,6 +3,8 @@
 
 [Issues](https://github.com/elowes/generator-eigen/issues ) Issue commit.
 
+
+
 ## Installation
 
 1. Install yeoman
@@ -20,22 +22,19 @@ npm install generator-eigen
 mkdir example && cd example
 ```
 
-4. Run（based on react@16.0 & dva@2.0）
+4. Run(based on react@16.0 & dva@2.0)
 ``` shell
 yo eigen
 ```
 
-5. Install project dependence
-``` shell
-npm install
-```
+## Other
 
-6. Run dev server 
+1. Run dev server 
 ``` shell
 npm start
 ```
 
-7. Bundle production codes (will generate codes in build/)
+2. Bundle production codes (will generate codes in build/)
 ``` shell
 npm run build
 ```
