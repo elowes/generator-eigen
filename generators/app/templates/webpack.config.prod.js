@@ -119,7 +119,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: '../index.html',
-            title: 'generator-eigen',
+            title: "<%= name %>",
             template: './index.ejs'
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
@@ -161,7 +161,7 @@ module.exports = {
             name: 'runtime',
         }),
         new webpack.BannerPlugin({
-            banner: "Created by generator-eigen :)"
+            banner: "created by generator-eigen. https://www.npmjs.com/package/generator-eigen :)"
         }),
         new ExtractTextPlugin({
             filename: "css/styles-[chunkhash].css"

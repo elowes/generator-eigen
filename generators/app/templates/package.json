@@ -1,7 +1,7 @@
 {
-  "name": "eigen",
+  "name": "<%= name %>",
   "version": "0.0.1",
-  "description": "eigen production.",
+  "description": "<%= description %>",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -10,11 +10,12 @@
     "lint": "eslint 'src/**/*.js*' --fix"
   },
   "keywords": [
-    "eigen"
+    "generator-eigen"
   ],
-  "author": "eigen",
+  "author": "<%= author %>",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-stage-1": "^6.24.1",
     "dva": "^2.0.4",
     "history": "^4.7.2",
     "normalize.css": "^7.0.0",
@@ -27,7 +28,6 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-dva-hmr": "^0.4.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",

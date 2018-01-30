@@ -4,14 +4,56 @@ module.exports = class extends Generator {
     default() {
     }
     writing() {
-        this.fs.copy(
-            this.templatePath('./**/*'),
-            this.destinationPath('./')
-        );
-        this.fs.copy(
-            this.templatePath('./**/.*'),
-            this.destinationPath('./')
-        );
+        return this.prompt([{
+            type: "input",
+            name: "name",
+            message: "Your project name",
+            default: "generator-eigen"
+        }, {
+            type: "input",
+            name: "description",
+            message: "Your project description",
+            default: ""
+        }, {
+            type: "input",
+            name: "author",
+            message: "Your project author",
+            default: "generator-eigen"
+        }]).then((answers) => {
+            this.fs.copy(
+                this.templatePath('../sources/**/*'),
+                this.destinationRoot()
+            );
+            this.fs.copy(
+                this.templatePath('../sources/**/.*'),
+                this.destinationRoot()
+            );
+            this.fs.copyTpl(
+                this.templatePath('index.html'),
+                this.destinationPath('index.html'),
+                {
+                    name: answers.name
+                }
+            );
+            this.fs.copyTpl(
+                this.templatePath('package.json'),
+                this.destinationPath('package.json'),
+                {
+                    name: answers.name,
+                    author: answers.author,
+                    description: answers.description
+                }
+            );
+            this.fs.copyTpl(
+                this.templatePath('webpack.config.prod.js'),
+                this.destinationPath('webpack.config.prod.js'),
+                {
+                    name: answers.name
+                }
+            )
+        })
+
+
     }
     install() {
         return this.prompt([{

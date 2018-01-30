@@ -100,7 +100,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.BannerPlugin({
-            banner: "Created by Eigen :)"
+            banner: "created by generator-eigen. https://www.npmjs.com/package/generator-eigen :)"
         }),
         new ExtractTextPlugin({
             filename: "css/styles.css"

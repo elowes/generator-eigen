@@ -5,6 +5,9 @@ import './HomePage.css';
 import styles from './HomePage.scss';
 import yeomanLogo from '../../assets/yeoman-logo.png';
 
+@connect(state => ({
+    homepage: state.homepage
+}))
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -12,9 +15,9 @@ class HomePage extends Component {
 
     render() {
         return <div className="container">
-            <img src={yeomanLogo} className={styles.logo}/>
+            <img src={yeomanLogo} className={styles.logo} />
         </div>
     }
 }
 
-export default connect(({ homepage }) => ({ homepage }))(HomePage);
+export default HomePage;

@@ -1,6 +1,6 @@
 {
   "name": "generator-eigen",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Create React&Dva apps easily.",
   "main": "index.js",
   "scripts": {
