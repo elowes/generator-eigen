@@ -21,7 +21,7 @@ module.exports = class extends Generator {
             default: "generator-eigen"
         }, {
             type: "confirm",
-            message: "[4/4]Do you need `antd` in your project?",
+            message: "[4/4] Do you need `antd` in your project?",
             name: "antd"
         }]).then((answers) => {
             this.fs.copy(
@@ -77,7 +77,7 @@ module.exports = class extends Generator {
     install() {
         return this.prompt([{
             type: "confirm",
-            message: '[1/1]Have you installed `cnpm`?',
+            message: '[1/1] Have you installed `cnpm`?',
             name: 'cnpm'
         },]).then((answers) => {
             if (answers.cnpm) {
