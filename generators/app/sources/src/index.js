@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 import homepage from './models/homepage';
 import router from './router';
 import 'normalize.css';
+import createLoading from "dva-loading";
 
 let history = createBrowserHistory();
 
@@ -12,7 +13,7 @@ const app = dva({
 });
 
 // 2. Plugins
-app.use({});
+app.use(createLoading());
 
 // 3. Model
 app.model(homepage);

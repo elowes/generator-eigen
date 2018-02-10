@@ -15,8 +15,13 @@
   "author": "<%= author %>",
   "license": "ISC",
   "dependencies": {
+    <% if(antd) { %>
+    "antd": "^3.2.0",
+    "babel-plugin-import": "^1.6.3",
+    <% } %>
     "babel-preset-stage-1": "^6.24.1",
     "dva": "^2.0.4",
+    "dva-loading": "^1.0.4",
     "history": "^4.7.2",
     "normalize.css": "^7.0.0",
     "react": "^16.0.0",

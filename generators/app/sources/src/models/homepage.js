@@ -1,30 +1,40 @@
+import { fetchMovieTop250 } from "../services/server";
+
 export default {
     namespace: 'homepage',
 
     state: {
-        test: null
+        movietop250: null
     },
 
     subscriptions: {
         setup({ dispatch, history }) {  // eslint-disable-line
             return history.listen(({ pathname }) => { // eslint-disable-line
-                
+                dispatch({
+                    type: "eFetchMovieTop250"
+                })
             })
         },
     },
 
     effects: {
-        *getDashboardArticles({ payload }, { call, put, select }) { // eslint-disable-line
-            yield put({
-                type: 'test'
-            })
+        *eFetchMovieTop250({ payload }, { call, put, select, take, all }) { // eslint-disable-line
+            try {
+                const res = yield call(fetchMovieTop250);
+                yield put({
+                    type: "rUpdateData",
+                    payload: res
+                })
+            } catch (error) {
+                console.error(error);
+            }
         },
 
     },
 
     reducers: {
-        test(state, { payload }) { // eslint-disable-line
-            return state;
+        rUpdateData(state, { payload }) {
+            return Object.assign({}, state, { movietop250: payload });
         }
     }
 };

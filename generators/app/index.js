@@ -7,18 +7,22 @@ module.exports = class extends Generator {
         return this.prompt([{
             type: "input",
             name: "name",
-            message: "Your project name",
+            message: "[1/4] Project name:",
             default: "generator-eigen"
         }, {
             type: "input",
             name: "description",
-            message: "Your project description",
-            default: ""
+            message: "[2/4] Project description:",
+            default: "no description"
         }, {
             type: "input",
             name: "author",
-            message: "Your project author",
+            message: "[3/4] Project author:",
             default: "generator-eigen"
+        }, {
+            type: "confirm",
+            message: "[4/4]Do you need `antd` in your project?",
+            name: "antd"
         }]).then((answers) => {
             this.fs.copy(
                 this.templatePath('../sources/**/*'),
@@ -41,12 +45,27 @@ module.exports = class extends Generator {
                 {
                     name: answers.name,
                     author: answers.author,
-                    description: answers.description
+                    description: answers.description,
+                    antd: answers.antd
+                }
+            );
+            this.fs.copyTpl(
+                this.templatePath('.babelrc'),
+                this.destinationPath('.babelrc'),
+                {
+                    antd: answers.antd
                 }
             );
             this.fs.copyTpl(
                 this.templatePath('webpack.config.prod.js'),
                 this.destinationPath('webpack.config.prod.js'),
+                {
+                    name: answers.name
+                }
+            );
+            this.fs.copyTpl(
+                this.templatePath('README.md'),
+                this.destinationPath('README.md'),
                 {
                     name: answers.name
                 }
@@ -58,9 +77,9 @@ module.exports = class extends Generator {
     install() {
         return this.prompt([{
             type: "confirm",
-            message: 'Have you installed `cnpm`?',
+            message: '[1/1]Have you installed `cnpm`?',
             name: 'cnpm'
-        }]).then((answers) => {
+        },]).then((answers) => {
             if (answers.cnpm) {
                 this.spawnCommandSync('cnpm', ['install'])
             } else {

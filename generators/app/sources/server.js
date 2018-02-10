@@ -22,11 +22,10 @@ app.use(function (req, res, next) {
 
 // proxy setting for dev
 const proxyConfig = {
-    'target': 'https://alpha-labs.aidigger.com',
+    'target': 'https://api.douban.com',
     'pathRewrite': { '^/proxy': '' },
     'headers': {
-        cookie: 'code=563757; skey="ZoGsc5OX0Tf1obykrm1WflJMIP8=";',
-        host: 'alpha-labs.aidigger.com'
+        host: 'api.douban.com'
     }
 }
 
