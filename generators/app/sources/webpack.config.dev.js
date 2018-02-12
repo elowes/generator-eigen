@@ -61,7 +61,12 @@ module.exports = {
                         }
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
                     },
                     {
                         loader: "sass-loader"
@@ -76,7 +81,12 @@ module.exports = {
                         loader: "css-loader"
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
                     },
                     {
                         loader: "less-loader"
@@ -87,7 +97,14 @@ module.exports = {
                 test: /\.css$/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ["css-loader", "postcss-loader"]
+                    use: ["css-loader", {
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
+                    }]
                 }))
             }
         ]

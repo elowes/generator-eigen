@@ -74,7 +74,12 @@ module.exports = {
                         }
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
                     },
                     {
                         loader: "sass-loader"
@@ -93,7 +98,12 @@ module.exports = {
                         }
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
                     },
                     {
                         loader: "less-loader"
@@ -110,7 +120,12 @@ module.exports = {
                             minimize: true
                         }
                     }, {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
+                        options: {
+                            config: {
+                                path: "./postcss.config.js"
+                            }
+                        }
                     }]
                 })
             }
