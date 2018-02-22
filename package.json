@@ -1,11 +1,9 @@
 {
   "name": "generator-eigen",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Create React&Dva apps easily.",
   "main": "index.js",
-  "scripts": {
-    "test": ""
-  },
+  "scripts": {},
   "keywords": [
     "yeoman-generator",
     "react",
@@ -20,6 +18,6 @@
   "author": "kaijun",
   "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^2.0.2"
+    "yeoman-generator": "^2.0.3"
   }
 }

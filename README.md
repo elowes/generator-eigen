@@ -38,6 +38,3 @@ npm start
 ``` shell
 npm run build
 ```
-
-## typescript版本
-Visit https://github.com/sanmaopep/generator-dva-ts
