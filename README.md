@@ -12,17 +12,17 @@
 npm install yo -g
 ```
 
-2. Install generator-eigen
-``` shell
-npm install generator-eigen
-```
-
-3. Create an empty directory in disk then cd it
+2. Create a directory then cd it
 ``` shell
 mkdir example && cd example
 ```
 
-4. Run(based on react@16.0 & dva@2.0)
+3. Install generator-eigen
+``` shell
+npm install generator-eigen
+```
+
+4. Run command(based on react@16.0 & dva@2.0)
 ``` shell
 yo eigen
 ```
