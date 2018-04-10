@@ -22,7 +22,7 @@ mkdir example && cd example
 npm install generator-eigen
 ```
 
-4. Run command(based on react@16.0 & dva@2.0)
+4. Run command(based on react@16.x & dva@2.x)
 ``` shell
 yo eigen
 ```
