@@ -6,11 +6,8 @@ var HappyPack = require('happypack')
 
 module.exports = {
   mode: 'production',
-  devtool: 'source-map',
-  entry: {
-    app: './src/index.js',
-    react: ['react', 'react-dom', 'prop-types']
-  },
+  // devtool: 'source-map',
+  entry: './src/index.js',
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -143,7 +140,13 @@ module.exports = {
   optimization: {
     runtimeChunk: true,
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        default: false,
+        react: {
+          test: /react/,
+          chunks: 'initial'
+        }
+      }
     }
   }
 }
