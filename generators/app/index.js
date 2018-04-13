@@ -67,7 +67,8 @@ module.exports = class extends Generator {
                 this.templatePath('README.md'),
                 this.destinationPath('README.md'),
                 {
-                    name: answers.name
+                    name: answers.name,
+                    description: answers.description                    
                 }
             )
         })
@@ -76,19 +77,24 @@ module.exports = class extends Generator {
     }
     install() {
         return this.prompt([{
-            type: "confirm",
-            message: '[1/1] Have you installed `cnpm`?',
-            name: 'cnpm'
+            type: "list",
+            choices: ['npm', 'cnpm', 'yarn'],
+            message: '[1/1] Which tools to install dependence?',
+            name: 'tool'
         },]).then((answers) => {
-            if (answers.cnpm) {
+            if (answers.tool === 'cnpm') {
                 this.spawnCommandSync('cnpm', ['install'])
-            } else {
+            } 
+            if (answers.tool === 'npm') {
                 this.spawnCommandSync('npm', ['install'])
+            }
+            if (answers.tool === 'yarn') {
+                this.spawnCommandSync('yarn', ['install'])                
             }
         })
     }
     end() {
-        this.log("Start dev server...")
+        this.log("run `npm start` to start dev server...")
         this.spawnCommand('npm', ['start'])
     }
 }
