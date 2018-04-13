@@ -1,13 +1,12 @@
 import request from '../utils/request'
 
 let host, api
+const mode = process.env.NODE_ENV
 
-if (!PRODUCTION) { // eslint-disable-line
+if (mode === 'development') {
   host = ''
   api = '/proxy/v2'
-}
-
-if (PRODUCTION) { // eslint-disable-line
+} else {
   host = ''
   api = '/v2'
 }

@@ -38,14 +38,9 @@ function parseJSON (response, success) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request (url, options) {
+export default function request (url, options = { method: 'get' }) {
   // fetch 默认不带 cookie，这里设置 credentials 为 include 来开启带 cookie 选项
-    if (PRODUCTION) { // eslint-disable-line
-    if (!options) {
-      options = { method: 'get' }
-    }
-    options = Object.assign(options, { credentials: 'include' })
-  }
+  options = Object.assign(options, { credentials: 'include' })
   return fetch(url, options)
     .then(checkStatus)
     .then(data => {

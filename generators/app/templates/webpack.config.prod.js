@@ -1,15 +1,15 @@
 process.env.NODE_ENV = 'production'
 var path = require('path')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HappyPack = require('happypack')
 
 module.exports = {
+  mode: 'production',
   devtool: 'source-map',
   entry: {
     app: './src/index.js',
-    vendor: ['react', 'react-dom']
+    react: ['react', 'react-dom', 'prop-types']
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -19,11 +19,7 @@ module.exports = {
     filename: 'js/[name]-[chunkhash].js',
     publicPath: '/static/'
   },
-  stats: {
-    children: false,
-    chunks: false,
-    modules: false
-  },
+  stats: 'normal',
   module: {
     rules: [
       {
@@ -62,71 +58,64 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              minimize: true,
-              modules: true,
-              localIdentName: '[hash:base64]'
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader',
+          options: {
+            minimize: true,
+            modules: true,
+            localIdentName: '[hash:base64]'
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              path: './postcss.config.js'
             }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: './postcss.config.js'
-              }
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }]
-        })
+          }
+        }, {
+          loader: 'sass-loader'
+        }]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              minimize: true
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            minimize: true
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              path: './postcss.config.js'
             }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: './postcss.config.js'
-              }
-            }
-          },
-          {
-            loader: 'less-loader'
-          }]
-        })
+          }
+        }, {
+          loader: 'less-loader'
+        }]
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            options: {
-              minimize: true
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader',
+          options: {
+            minimize: true
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              path: './postcss.config.js'
             }
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: './postcss.config.js'
-              }
-            }
-          }]
-        })
+          }
+        }]
       }
     ]
   },
@@ -136,45 +125,25 @@ module.exports = {
       title: '<%= name %>',
       template: './index.ejs'
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      },
-      PRODUCTION: JSON.stringify(true),
-      VERSION: JSON.stringify(new Date().toLocaleString())
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new HappyPack({
       loaders: [
         {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true
-          }
+          loader: 'babel-loader'
         }
       ],
       threads: 4
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true,
-        drop_debugger: true
-      }
-    }),
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
-    }),
     new webpack.BannerPlugin({
       banner: 'created by generator-eigen. https://www.npmjs.com/package/generator-eigen :)'
-    }),
-    new ExtractTextPlugin({
-      filename: 'css/styles-[chunkhash].css'
     })
-  ]
+  ],
+  optimization: {
+    runtimeChunk: true,
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 }
