@@ -4,16 +4,14 @@
         "react",
         "stage-1"
     ],
-    "plugins": [
-        <% if(antd) { %>
+    "plugins": [<% if(antd) { %>
         [
             "import",
             {
                 "libraryName": "antd",
                 "style": true
             }
-        ],
-        <% } %>
+        ],<% } %>
         "transform-runtime",
         "transform-decorators-legacy"
     ],

@@ -1,6 +1,6 @@
 .container {
     height: 100vh;
-    background: url("../../assets/react-logo.svg") no-repeat center bottom -300px;
+    background: url("../../../assets/react-logo.svg") no-repeat center bottom -300px;
     background-size: 600px;
 }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import PropTypes from 'prop-types'
-import './HomePage.css'
-import styles from './HomePage.scss'
+import './style/index.css'
+import styles from './style/index.scss'
 
 @connect(state => ({
   homepage: state.homepage,
