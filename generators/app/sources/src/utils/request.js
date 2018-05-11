@@ -38,7 +38,7 @@ function parseJSON (response, success) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request (url, options = { method: 'get' }) {
+function request (url, options = { method: 'get' }) {
   // fetch 默认不带 cookie，这里设置 credentials 为 include 来开启带 cookie 选项
   options = Object.assign(options, { credentials: 'include' })
   return fetch(url, options)
@@ -48,4 +48,41 @@ export default function request (url, options = { method: 'get' }) {
     }).catch(err => {
       return Promise.reject(err)
     })
+}
+
+export default {
+  request: request,
+  get: (url) => {
+    return request(url, { method: 'get' })
+  },
+  post: (url, body = {}) => {
+    return request(url, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  },
+  put: (url, body = {}) => {
+    return request(url, {
+      method: 'put',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  },
+  delete: (url, body = {}) => {
+    return request(url, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  }
 }

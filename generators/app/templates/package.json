@@ -1,12 +1,13 @@
 {
   "name": "<%= name %>",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "<%= description %>",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
-    "test": "./node_modules/.bin/eslint src --fix"
+    "build": "webpack --config webpack.config.prod.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "keywords": [
     "generator-eigen"
@@ -16,7 +17,7 @@
   "dependencies": {<% if(antd) { %>
     "antd": "^3.2.0",<% } %>
     "dva": "^2.2.2",
-    "dva-loading": "^1.0.4",
+    "dva-loading": "^2.0.1",
     "history": "^4.7.2",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
@@ -45,7 +46,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "express": "^4.16.2",
     "file-loader": "^1.1.5",
-    "happypack": "5.0.0-beta.3",
+    "happypack": "5.0.0",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.17.4",
     "less": "^2.3.1",

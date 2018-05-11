@@ -12,7 +12,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'build/static'),
+    path: path.join(__dirname, 'dist/static'),
     filename: 'js/[name]-[chunkhash].js',
     publicPath: '/static/'
   },
@@ -62,7 +62,7 @@ module.exports = {
           options: {
             minimize: true,
             modules: true,
-            localIdentName: '[hash:base64]'
+            localIdentName: '[name]_[local]_[hash:4]'
           }
         }, {
           loader: 'postcss-loader',
