@@ -3,17 +3,15 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HappyPack = require('happypack')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   // devtool: 'source-map',
   entry: './src/index.js',
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
   output: {
     path: path.join(__dirname, 'dist/static'),
-    filename: 'js/[name]-[chunkhash].js',
+    filename: 'js/[name]-[chunkhash:6].js',
     publicPath: '/static/'
   },
   stats: 'normal',
@@ -42,7 +40,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         use: [{
           loader: 'happypack/loader'
         }],
@@ -117,6 +115,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       title: '<%= name %>',
@@ -140,6 +139,8 @@ module.exports = {
   optimization: {
     runtimeChunk: true,
     splitChunks: {
+      automaticNameDelimiter: '-',
+      maxInitialRequests: 10,
       cacheGroups: {
         default: false,
         react: {
